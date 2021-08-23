@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { LoginComponents } from "../components/Login/LoginComponents";
-import { PasswordReset } from "../components/Login/PasswordReset";
+// import { PasswordReset } from "../components/Login/PasswordReset";
 
 export const Entry = () => {
   const [email, setEmail] = useState("");

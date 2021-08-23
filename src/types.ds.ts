@@ -7,3 +7,11 @@ export interface ILoginComp {
   email: string;
   password?: string;
 }
+
+
+export interface ITicketData{
+    id:number
+    subject:string
+    status:string
+    createdAt:string
+}
