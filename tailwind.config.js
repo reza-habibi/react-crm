@@ -153,12 +153,6 @@ module.exports = {
         100: "28rem",
         120: "40rem",
       },
-      backgroundImage: (theme) => ({
-        women: "url('../src/assets/images/mobile/category-women.png')",
-        men: "url('../src/assets/images/mobile/category-men.png')",
-        kids: "url('../src/assets/images/mobile/category-kids.png')",
-        beauty: "url('../src/assets/images/mobile/category-beauty.png')",
-      }),
       fontFamily: {
         yekan: ["iranyekan"],
       },
