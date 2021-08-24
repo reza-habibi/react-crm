@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const BreadCrumbComponent = ({ page }: any) => {
   return (
-    <ul className="flex text-white text-xl lg:text-2xl justify-start w-full container">
+    <ul className="flex text-white text-xl lg:text-2xl justify-start w-full container py-10">
       <li className="inline-flex items-center">
         <Link to="/">خانه</Link>
         <ChevronLeftIcon className="block w-6 h-6" aria-hidden="true" />

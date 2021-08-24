@@ -13,19 +13,19 @@ export const fakeTicketData = [
   },
   {
     id: 3,
-    subject: "مشکل در ارتباط با سرور",
+    subject: "مشکل در سرویس اس اس ال",
     status: "در انتظار پاسخ کاربر",
     createdAt: new Date().toLocaleString("fa"),
   },
   {
     id: 4,
-    subject: "مشکل در ارتباط با سرور",
+    subject: "منقضی شدن ایمیل",
     status: "در انتظار پاسخ کاربر",
     createdAt: new Date().toLocaleString("fa"),
   },
   {
     id: 5,
-    subject: "مشکل در ارتباط با سرور",
+    subject: "ویروسی شدن سرور",
     status: "در انتظار پاسخ کاربر",
     createdAt: new Date().toLocaleString("fa"),
   },

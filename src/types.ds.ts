@@ -8,10 +8,14 @@ export interface ILoginComp {
   password?: string;
 }
 
+export interface ITicketData {
+  id: number;
+  subject: string;
+  status: string;
+  createdAt: string;
+}
 
-export interface ITicketData{
-    id:number
-    subject:string
-    status:string
-    createdAt:string
+export interface ISearchFormProps {
+  handleOnChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  str: String;
 }

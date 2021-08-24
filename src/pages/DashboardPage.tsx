@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { BreadCrumbComponent } from "../components/BreadCrumb/BreadCrumbComponent";
 import { fakeTicketData } from "../fakeData";
 import { ITicketData } from "../types.ds";
@@ -7,9 +8,9 @@ export const DashboardPage = () => {
   return (
     <div className="w-full h-full flex flex-col items-center space-y-12 py-12 ">
       <BreadCrumbComponent page={"داشبورد"} />
-      <button className="bg-blue-500 hover:bg-blue-700 text-white text-2xl w-1/2 lg:w-1/5 py-5 rounded-lg">
+      <Link to="/add-ticket" className="bg-blue-500 hover:bg-blue-700 text-white text-2xl w-1/2 lg:w-1/5 py-5 rounded-lg text-center">
         ایجاد تیکت جدید
-      </button>
+      </Link>
       <span className="text-gray-900 font-bold text-2xl">
         تعداد کل تیکت ها : 256
       </span>

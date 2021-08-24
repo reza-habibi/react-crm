@@ -8,6 +8,7 @@ import { AddTicketPage } from "./pages/AddTicketPage";
 import { DashboardPage } from "./pages/DashboardPage";
 
 import { Entry } from "./pages/Entry";
+import { TicketListPage } from "./pages/TicketListPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/resetpassword" component={PasswordReset} />
           <Route path="/dashboard" exact component={DashboardPage} />
           <Route path="/add-ticket" component={AddTicketPage} />
+          <Route path="/ticket-list" component={TicketListPage} />
         </Switch>
         <Footer />
       </Router>
