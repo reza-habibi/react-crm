@@ -8,11 +8,18 @@ export interface ILoginComp {
   password?: string;
 }
 
-export interface ITicketData {
+export type ITicketData ={
   id: number;
   subject: string;
   status: string;
   createdAt: string;
+  history?:ITicketHistory[]
+}
+
+export type ITicketHistory={
+  date:string;
+  message:string;
+  messageBy:string
 }
 
 export interface ISearchFormProps {

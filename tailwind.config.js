@@ -183,7 +183,7 @@ module.exports = {
           800: "#D66A84",
           900: "#CB4263",
         },
-        "we-kids": {
+        "orange": {
           DEFAULT: "#F7DFDD",
           50: "#FFFFFF",
           100: "#FFFFFF",
