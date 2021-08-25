@@ -33,7 +33,7 @@ export default function Header() {
               پنل کاربری
             </Link>
             <Link
-              to="#"
+              to="/ticket-list"
               className="text-2xl font-medium text-gray-500 hover:text-gray-900"
             >
               تیکت ها

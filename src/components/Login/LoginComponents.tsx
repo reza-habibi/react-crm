@@ -9,9 +9,9 @@ export const LoginComponents:React.FC<ILoginComp> = ({
   password,
 }) => {
   return (
-    <div className="w-full h-screen flex justify-center items-center ">
+    <div className="w-full h-88vh flex justify-center items-center align-middle	">
       <form
-        className="w-full lg:w-1/4 lg:mx-auto bg-white rounded-lg flex flex-col space-y-12 py-10 px-10 lg:px-5 mx-5  "
+        className="w-full lg:w-1/2 lg:mx-auto bg-white rounded-lg flex flex-col space-y-12 py-10 px-10 lg:px-5 mx-5  "
         onSubmit={handleOnSubmit}
       >
         <h2 className="text-pelorous-600 text-4xl lg:w-2/3 text-center  lg:mx-auto pb-5 border-b border-gray-300">

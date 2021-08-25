@@ -11,15 +11,15 @@ export const DashboardPage = () => {
       <Link to="/add-ticket" className="bg-blue-500 hover:bg-blue-700 text-white text-2xl w-1/2 lg:w-1/5 py-5 rounded-lg text-center">
         ایجاد تیکت جدید
       </Link>
-      <span className="text-gray-900 font-bold text-2xl">
+      <span className="text-white font-bold text-2xl">
         تعداد کل تیکت ها : 256
       </span>
-      <span className="text-gray-900 font-bold text-2xl">
+      <span className="text-white font-bold text-2xl">
         تیکت های در انتظار پاسخ : 15
       </span>
 
       <div className="w-full lg:w-10/12 mx-auto py-10 space-y-10">
-        <span className="text-gray-900 font-bold text-2xl">
+        <span className="text-white font-bold text-2xl">
           جدیدترین تیکت های اضافه شده :
         </span>
         <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">

@@ -152,6 +152,7 @@ module.exports = {
         "mb-cat": "96px",
         100: "28rem",
         120: "40rem",
+        "88vh": "88vh",
       },
       fontFamily: {
         yekan: ["iranyekan"],
@@ -183,7 +184,7 @@ module.exports = {
           800: "#D66A84",
           900: "#CB4263",
         },
-        "orange": {
+        orange: {
           DEFAULT: "#F7DFDD",
           50: "#FFFFFF",
           100: "#FFFFFF",

@@ -8,7 +8,7 @@ export const TicketPage = () => {
   return (
     <>
       <BreadCrumbComponent page={"تیکت"} />
-      <div className="container bg-white space-y-10 rounded-2xl">
+      <div className="container bg-white space-y-10 rounded-2xl mb-20">
         <div className="top w-full p-10 flex justify-between items-start border-b border-gray-300">
           <button className="bg-blue-500 hover:bg-blue-700 text-white text-2xl w-80 py-5 rounded-lg">
             بستن تیکت
