@@ -9,44 +9,49 @@ export const MessageHistoryComponent: React.FC<{
       {msgHistory?.map((item: ITicketHistory, index: number) => (
         <div
           key={index}
-          className={`w-full grid grid-cols-4 grid-flow-row p-10  border rounded-lg  ${
+          className={`w-full flex flex-col lg:grid grid-cols-4 grid-flow-row p-10  border rounded-lg  ${
             item.messageBy === "اپراتور" ? "border-pelorous" : "border-blue-500"
           }`}
         >
           <div
-            className={`col-span-1 flex flex-col  ${
-              item.messageBy === "اپراتور" ? "items-end" : "items-start"
+            className={`col-span-1 flex lg:flex-col mb-5 lg:mb-0 ${
+              item.messageBy === "اپراتور"
+                ? "items-start lg:items-end"
+                : "items-start"
             }`}
           >
-            <figure>
+            <figure className="w-1/3">
               <img
-                className={`border-2 rounded-full h-1/2 w-1/2  ${
+                className={`border-2 rounded-full h-1/2 w-36  ${
                   item.messageBy === "اپراتور"
-                    ? "border-pelorous mr-auto"
+                    ? "border-pelorous lg:mr-auto"
                     : "border-blue-500"
                 }`}
                 src="/images/avatar.jpg"
                 alt="avatar"
               />
             </figure>
-            <span className="text-gray-900 text-2xl ">
-              فرستنده :{" "}
-              <span
-                className={`text-2xl  ${
-                  item.messageBy === "اپراتور"
-                    ? "text-pelorous"
-                    : "text-blue-500"
-                }`}
-              >
-                {item.messageBy}
+            <div className="flex flex-col space-y-3 w-2/3 h-full justify-center">
+              <span className="text-gray-900 text-2xl ">
+                فرستنده :{" "}
+                <span
+                  className={`text-2xl  ${
+                    item.messageBy === "اپراتور"
+                      ? "text-pelorous"
+                      : "text-blue-500"
+                  }`}
+                >
+                  {item.messageBy}
+                </span>
               </span>
-            </span>
-            <span className="text-gray-900 text-2xl ">
-              تاریخ : <span className="text-gray-600 text-xl">{item.date}</span>
-            </span>
+              <span className="text-gray-900 text-2xl ">
+                تاریخ :{" "}
+                <span className="text-gray-600 text-xl">{item.date}</span>
+              </span>
+            </div>
           </div>
           <div
-            className={`col-span-3 border border-gray-500-bg-white p-5 rounded-xl shadow-xl bg-gray-100 ${
+            className={`col-span-3 border border-gray-500-bg-white p-5 rounded-xl shadow-xl bg-gray-100 lg:${
               item.messageBy === "اپراتور" && "order-first "
             }
 `}
