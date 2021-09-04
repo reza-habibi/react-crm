@@ -1,14 +1,18 @@
 import { SearchIcon } from "@heroicons/react/outline";
-import React from "react";
-import { ISearchFormProps } from "../../types.ds";
+import React, { ChangeEvent } from "react";
+import { useDispatch } from "react-redux";
+import { filterSearchTicket } from "../../pages/TicketList/ticketsAction";
 
-export const SearchFormComponent: React.FC<ISearchFormProps> = ({
-  handleOnChange,
-  str,
-}) => {
-  console.log(str);
+export const SearchFormComponent = () => {
+  const dispatch = useDispatch();
+
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    dispatch(filterSearchTicket(value));
+  };
+
   return (
-    <div className="p-8 w-1/3">
+    <div className="p-8 w-full lg:w-1/3">
       <div className="bg-white flex items-center rounded-full shadow-xl border border-gray-300 ">
         <div className="floating-input relative w-full ">
           <input
@@ -16,8 +20,8 @@ export const SearchFormComponent: React.FC<ISearchFormProps> = ({
             id="search"
             type="text"
             placeholder=" "
-            onChange={handleOnChange}
             autoComplete="off"
+            onChange={handleOnChange}
           />
 
           <label

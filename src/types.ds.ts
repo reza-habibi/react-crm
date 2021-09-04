@@ -8,21 +8,28 @@ export interface ILoginComp {
   password?: string;
 }
 
-export type ITicketData ={
-  id: number;
+export type ITicketData = {
+  _id: any;
   subject: string;
   status: string;
-  createdAt: string;
-  history?:ITicketHistory[]
-}
+  openAt: string;
+  history?: ITicketHistory[];
+};
 
-export type ITicketHistory={
-  date:string;
-  message:string;
-  messageBy:string
-}
+export type ITicketHistory = {
+  date: string;
+  message: string;
+  messageBy: string;
+};
 
 export interface ISearchFormProps {
   handleOnChange: (e: ChangeEvent<HTMLInputElement>) => void;
   str: String;
+}
+
+export interface ITicketState {
+  tickets: ITicketData[];
+  isLoading: boolean;
+  error: string;
+  searchTicketList: any
 }

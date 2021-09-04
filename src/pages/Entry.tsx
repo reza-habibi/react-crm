@@ -1,6 +1,8 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import { toast } from "react-toastify";
 import { LoginComponents } from "../components/Login/LoginComponents";
+import { PasswordReset } from "../components/Login/PasswordReset";
 // import { PasswordReset } from "../components/Login/PasswordReset";
 
 export const Entry = () => {
@@ -46,14 +48,33 @@ export const Entry = () => {
   };
   return (
     <>
-      <LoginComponents
-        handleOnSubmit={handleOnSubmit}
-        handleOnChange={handleOnChange}
-        email={email}
-        password={password}
-      />
-
-      
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <LoginComponents
+              handleOnSubmit={handleOnSubmit}
+              handleOnChange={handleOnChange}
+              email={email}
+              password={password}
+              {...props}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <PasswordReset
+              handleOnSubmit={handleOnSubmit}
+              handleOnChange={handleOnChange}
+              email={email}
+              {...props}
+            />
+          )}
+        />
+      </Switch>
     </>
   );
 };

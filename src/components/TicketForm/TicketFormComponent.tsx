@@ -24,9 +24,9 @@ export const TicketFormComponent = () => {
     formData.date = dateValue?.toLocaleString("fa");
   };
 
-  const handleOnSubmit =async (e: FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const isValid =await ShortText(formData.subject);
+    const isValid = await ShortText(formData.subject);
     !formData.subject
       ? toast.error("لطفاً فیلد موضوع را تکمیل نمایید!", {
           position: "top-right",

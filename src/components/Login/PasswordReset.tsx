@@ -8,7 +8,7 @@ export const PasswordReset: React.FC<ILoginComp> = ({
   email,
 }) => {
   return (
-    <div className="w-full h-88vh flex justify-center items-center  ">
+    <div className=" h-88vh flex justify-center items-center mx-5">
       <form
         className="w-full md:w-1/2 md:mx-auto bg-white rounded-lg flex flex-col space-y-12 py-10 px-5 "
         onSubmit={handleOnSubmit}

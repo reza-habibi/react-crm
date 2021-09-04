@@ -22,16 +22,22 @@ export const MessageHistoryComponent: React.FC<{
           >
             <figure className="w-1/3">
               <img
-                className={`border-2 rounded-full h-1/2 w-36  ${
+                className={`border-2 rounded-full h-auto w-36   ${
                   item.messageBy === "اپراتور"
-                    ? "border-pelorous lg:mr-auto"
+                    ? "border-pelorous "
                     : "border-blue-500"
                 }`}
                 src="/images/avatar.jpg"
                 alt="avatar"
               />
             </figure>
-            <div className="flex flex-col space-y-3 w-2/3 h-full justify-center">
+            <div
+              className={`flex flex-col space-y-3 w-2/3 h-full my-auto mr-2 ${
+                item.messageBy === "اپراتور"
+                  ? "items-start lg:items-end"
+                  : "items-start"
+              }`}
+            >
               <span className="text-gray-900 text-2xl ">
                 فرستنده :{" "}
                 <span

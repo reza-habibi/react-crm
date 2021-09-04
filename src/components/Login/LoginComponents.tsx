@@ -58,7 +58,7 @@ export const LoginComponents:React.FC<ILoginComp> = ({
           ورود
         </button>
         <Link
-          to="/resetpassword"
+          to="/reset-password"
           className="text-blue-500 text-xl lg:w-2/3 lg:mx-auto py-5 border-t border-gray-300"
         >
           رمز عبور خود را فراموش کرده اید ؟

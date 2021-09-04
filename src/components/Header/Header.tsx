@@ -33,7 +33,7 @@ export default function Header() {
               پنل کاربری
             </Link>
             <Link
-              to="/ticket-list"
+              to="/tickets"
               className="text-2xl font-medium text-gray-500 hover:text-gray-900"
             >
               تیکت ها
@@ -100,7 +100,7 @@ export default function Header() {
                 </Link>
 
                 <Link
-                  to="#"
+                  to="/tickets"
                   className="text-2xl font-medium text-gray-900 hover:text-gray-700"
                 >
                   تیکت ها

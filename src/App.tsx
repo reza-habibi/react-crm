@@ -1,14 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Footer } from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
-import { PasswordReset } from "./components/Login/PasswordReset";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { AddTicketPage } from "./pages/AddTicketPage";
 import { DashboardPage } from "./pages/DashboardPage";
-
 import { Entry } from "./pages/Entry";
-import { TicketListPage } from "./pages/TicketListPage";
+import { TicketListPage } from "./pages/TicketList/TicketListPage";
 import { TicketPage } from "./pages/TicketPage";
 
 function App() {
@@ -16,16 +13,21 @@ function App() {
     <>
       <ToastContainer />
       <Router>
-        <Header />
+          <Entry />
         <Switch>
-          <Route path="/" exact component={Entry} />
-          <Route path="/resetpassword" component={PasswordReset} />
-          <Route path="/dashboard" exact component={DashboardPage} />
-          <Route path="/add-ticket" component={AddTicketPage} />
-          <Route path="/ticket-list" component={TicketListPage} />
-          <Route path="/ticket" component={TicketPage} />
+          <PrivateRoute path="/dashboard" exact>
+            <DashboardPage />
+          </PrivateRoute>
+          <PrivateRoute exact path="/add-ticket">
+            <AddTicketPage />
+          </PrivateRoute>
+          <PrivateRoute exact path="/tickets">
+            <TicketListPage />
+          </PrivateRoute>
+          <PrivateRoute exact path="/ticket/:tid">
+            <TicketPage />
+          </PrivateRoute>
         </Switch>
-        <Footer />
       </Router>
     </>
   );
