@@ -7,7 +7,7 @@ export const TicketTableComponent = ({ tickets }: any) => {
   return (
     <div className="w-full lg:w-10/12 mx-auto py-10 space-y-10">
       <span className="text-gray-900 font-bold text-2xl">لیست تیکت ها :</span>
-      <div className="shadow overflow-x-scroll border-b border-gray-200 sm:rounded-lg">
+      <div className="shadow overflow-y-hidden overflow-x-scroll lg:overflow-x-hidden border-b border-gray-200 sm:rounded-lg">
         <table className="min-w-full divide-y divide-gray-200 ">
           <thead className="bg-gray-50">
             <tr>
@@ -38,7 +38,7 @@ export const TicketTableComponent = ({ tickets }: any) => {
             </tr>
           </thead>
           {tickets.length === 0 ? (
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white divide-y divide-gray-200 ">
               <tr className="h-16 flex items-center">
                 <td className="text-gray-900 text-2xl w-full p-5">
                   تیکتی برای نمایش وجود ندارد

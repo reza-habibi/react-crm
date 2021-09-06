@@ -49,19 +49,7 @@ export const Entry = () => {
   return (
     <>
       <Switch>
-        <Route
-          exact
-          path="/"
-          render={(props) => (
-            <LoginComponents
-              handleOnSubmit={handleOnSubmit}
-              handleOnChange={handleOnChange}
-              email={email}
-              password={password}
-              {...props}
-            />
-          )}
-        />
+        <Route exact path="/" component={LoginComponents} />
         <Route
           exact
           path="/"

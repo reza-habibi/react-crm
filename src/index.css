@@ -24,15 +24,14 @@ body{
 .floating-input > input::placeholder {
   color: transparent;
 }
-/* .floating-input > input:focus,
+.floating-input > input:focus,
 .floating-input > input:not(:placeholder-shown) {
   @apply pt-8;
-} */
+}
 .floating-input > input:focus ~ label,
 .floating-input > input:not(:placeholder-shown) ~ label {
   @apply bg-white text-base mr-2 -translate-y-9 text-pelorous;
 }
-
 .rmdp-input {
   height: 4rem !important;
   border-color: #6b7280 !important;

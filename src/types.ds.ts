@@ -31,5 +31,23 @@ export interface ITicketState {
   tickets: ITicketData[];
   isLoading: boolean;
   error: string;
-  searchTicketList: any
+  searchTicketList: any;
 }
+
+export type IResultData = {
+  status: string;
+  result: ITicketData[];
+};
+
+export interface ILoginState {
+  isLoading: boolean;
+  isAuth: boolean;
+  error: string;
+}
+
+export type IIsAuth = {
+  accessJWT: string;
+  message: string;
+  refreshJWT: string;
+  status: string;
+};

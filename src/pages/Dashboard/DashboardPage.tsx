@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { BreadCrumbComponent } from "../components/BreadCrumb/BreadCrumbComponent";
-import { Loading } from "../components/Loading/Loading";
-import { RootState } from "../store";
-import { ITicketData } from "../types.ds";
-import { fetchAllTickets } from "./TicketList/ticketsAction";
+import { BreadCrumbComponent } from "../../components/BreadCrumb/BreadCrumbComponent";
+import { Loading } from "../../components/Loading/Loading";
+import { RootState } from "../../store";
+import { ITicketData } from "../../types.ds";
+import { fetchAllTickets } from "../TicketList/ticketsAction";
 
 export const DashboardPage = () => {
   const dispatch = useDispatch();
@@ -86,11 +86,13 @@ export const DashboardPage = () => {
               </tr>
             </thead>
             {tickets.length === 0 ? (
-              <tr className="h-16 flex items-center">
-                <td className="text-gray-900 text-2xl w-full p-5">
-                  تیکتی برای نمایش وجود ندارد
-                </td>
-              </tr>
+              <tbody className="bg-white divide-y divide-gray-200">
+                <tr className="h-16 flex items-center">
+                  <td className="text-gray-900 text-2xl w-full p-5">
+                    تیکتی برای نمایش وجود ندارد
+                  </td>
+                </tr>
+              </tbody>
             ) : (
               <tbody className="bg-white divide-y divide-gray-200">
                 {tickets.map((ticket: ITicketData) => (

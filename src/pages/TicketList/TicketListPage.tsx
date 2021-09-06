@@ -11,7 +11,7 @@ import { Loading } from "../../components/Loading/Loading";
 export const TicketListPage = () => {
   const dispatch = useDispatch();
   const ticketsReducer = useSelector((state: RootState) => state.Tickets);
-  const { isLoading, error, tickets, searchTicketList } = ticketsReducer;
+  const { isLoading, error, searchTicketList } = ticketsReducer;
 
   useEffect(() => {
     dispatch(fetchAllTickets());

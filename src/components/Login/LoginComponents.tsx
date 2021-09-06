@@ -1,13 +1,58 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { ILoginComp } from "../../types.ds";
+import React, { ChangeEvent } from "react";
+import { useEffect } from "react";
+import { FormEvent } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { userLogin } from "../../api/userApi";
+import { getUser } from "../../pages/Dashboard/userActions";
+import { RootState } from "../../store";
+import { loginPending, loginSuccess, loginFail } from "./loginSlice";
+export const LoginComponents = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const login = useSelector((state: RootState) => state.Login);
+  const { isLoading, isAuth, error } = login;
 
-export const LoginComponents:React.FC<ILoginComp> = ({
-  handleOnSubmit,
-  handleOnChange,
-  email,
-  password,
-}) => {
+  useEffect(() => {
+    if (isAuth === true) {
+      history.push("/dashboard");
+    }
+  }, [history, isAuth]);
+  const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(loginPending());
+    try {
+      const isAuth = await userLogin({ email, password });
+
+      if (isAuth.data.status === "error") {
+        dispatch(loginFail(isAuth.data.message));
+      } else {
+        dispatch(loginSuccess());
+        dispatch(getUser());
+      }
+    } catch (error) {
+      dispatch(loginFail(error.message));
+    }
+  };
+
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    switch (name) {
+      case "email":
+        setEmail(value);
+        break;
+      case "password":
+        setPassword(value);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="w-full h-88vh flex justify-center items-center align-middle	">
       <form
@@ -17,6 +62,11 @@ export const LoginComponents:React.FC<ILoginComp> = ({
         <h2 className="text-pelorous-600 text-4xl lg:w-2/3 text-center  lg:mx-auto pb-5 border-b border-gray-300">
           ورود مشتریان
         </h2>
+        {error !== "" && (
+          <span className="bg-red-200 text-red-700 lg:w-2/3 lg:mx-auto text-2xl p-4 rounded-lg">
+            {error}
+          </span>
+        )}
         <div className="floating-input relative lg:w-2/3 lg:mx-auto ">
           <input
             type="email"
@@ -57,6 +107,13 @@ export const LoginComponents:React.FC<ILoginComp> = ({
         <button className="bg-blue-500 hover:bg-blue-700 text-white text-2xl lg:w-2/3 lg:mx-auto py-5 rounded-lg">
           ورود
         </button>
+        {isLoading && (
+          <div className="flex justify-center items-center h-32">
+            <div className="bg-red-600 p-2 w-4 h-4 rounded-full animate-bounce400 green-circle mr-1"></div>
+            <div className="bg-green-600 p-2 w-4 h-4 rounded-full animate-bounce200 red-circle mr-1"></div>
+            <div className="bg-blue-600 p-2 w-4 h-4 rounded-full animate-bounce blue-circle mr-1"></div>
+          </div>
+        )}
         <Link
           to="/reset-password"
           className="text-blue-500 text-xl lg:w-2/3 lg:mx-auto py-5 border-t border-gray-300"
