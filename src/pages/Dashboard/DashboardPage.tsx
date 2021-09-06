@@ -36,7 +36,7 @@ export const DashboardPage = () => {
       </div>
     );
   return (
-    <div className="w-full h-full flex flex-col items-center space-y-12 py-12 ">
+    <div className="w-full h-full flex flex-col items-center space-y-12 py-12 px-8">
       <BreadCrumbComponent page={"داشبورد"} />
       <Link
         to="/add-ticket"

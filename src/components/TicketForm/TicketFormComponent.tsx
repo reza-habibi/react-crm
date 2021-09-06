@@ -1,27 +1,25 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import DatePicker, { DateObject } from "react-multi-date-picker";
-import type { Value } from "react-multi-date-picker";
-import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
-import InputIcon from "react-multi-date-picker/components/input_icon";
+// import DatePicker, { DateObject } from "react-multi-date-picker";
+// import type { Value } from "react-multi-date-picker";
+// import persian from "react-date-object/calendars/persian";
+// import persian_fa from "react-date-object/locales/persian_fa";
+// import InputIcon from "react-multi-date-picker/components/input_icon";
 import { toast } from "react-toastify";
 import { ShortText } from "../../utils/Validation";
 
 export const TicketFormComponent = () => {
-  const [dateValue, setDateValue] = useState<Value>(
-    new DateObject({ calendar: persian })
-  );
+  // const [dateValue, setDateValue] = useState<Value>(
+  //   new DateObject({ calendar: persian })
+  // );
   const [formData, setFormData] = useState({
     subject: "",
-    date: dateValue?.toLocaleString("fa"),
-    details: "",
+    message: "",
   });
   const handleOnChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    formData.date = dateValue?.toLocaleString("fa");
   };
 
   const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -42,7 +40,7 @@ export const TicketFormComponent = () => {
             fontSize: "1.5rem",
           },
         })
-      : !formData.details
+      : !formData.message
       ? toast.error("لطفاً فیلد  جزئیات را تکمیل نمایید!", {
           position: "top-right",
           autoClose: 5000,
@@ -99,7 +97,7 @@ export const TicketFormComponent = () => {
           موضوع تیکت
         </label>
       </div>
-      <div className="floating-input relative lg:w-2/3 lg:mx-auto ">
+      {/* <div className="floating-input relative lg:w-2/3 lg:mx-auto ">
         <label htmlFor="date" className="ml-5 text-xl text-gray-900">
           تاریخ روی دادن خطا :
         </label>
@@ -116,10 +114,10 @@ export const TicketFormComponent = () => {
           value={dateValue}
           onChange={setDateValue}
         />
-      </div>
+      </div> */}
       <div className="floating-input relative lg:w-2/3 lg:mx-auto ">
         <textarea
-          name="details"
+          name="message"
           className="form-textarea border resize-y text-xl outline-none w-full p-3 h-48 rounded-lg"
           placeholder="توضیحات"
           autoComplete="off"

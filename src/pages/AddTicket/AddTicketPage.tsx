@@ -1,6 +1,6 @@
 import React from "react";
-import { BreadCrumbComponent } from "../components/BreadCrumb/BreadCrumbComponent";
-import { TicketFormComponent } from "../components/TicketForm/TicketFormComponent";
+import { BreadCrumbComponent } from "../../components/BreadCrumb/BreadCrumbComponent";
+import { TicketFormComponent } from "../../components/TicketForm/TicketFormComponent";
 
 export const AddTicketPage = () => {
   return (

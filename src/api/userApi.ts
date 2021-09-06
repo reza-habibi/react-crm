@@ -1,10 +1,11 @@
 import axios from "axios";
 import { IIsAuth } from "../types.ds";
 
-const rootUrl = "http://localhost:4030";
-const loginUrl = rootUrl + "/v1/user/login";
-const userProfileUrl = rootUrl + "/v1/user";
-
+const rootUrl = "http://localhost:4030/v1/";
+const loginUrl = rootUrl + "user/login";
+const userProfileUrl = rootUrl + "user";
+const logoutUrl = rootUrl + "user/logout";
+const newAccessJWT = rootUrl + "tokens";
 export const userLogin = (formData: { email: string; password: string }) => {
   return new Promise<{ data: IIsAuth }>(async (resolve, reject) => {
     try {
@@ -40,4 +41,54 @@ export const fetchUser = () => {
       reject(error);
     }
   });
+};
+
+export const fetchNewAccessJWT = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const storedData = localStorage.getItem("crmSite");
+      let crmSite;
+      if (typeof storedData === "string") {
+        crmSite = JSON.parse(storedData);
+      }
+      const { refreshJWT } = crmSite;
+      if (!refreshJWT) {
+        reject("user not found!");
+      }
+
+      if (!refreshJWT) {
+        reject("Token not found!");
+      }
+
+      const res = await axios.get(newAccessJWT, {
+        headers: {
+          Authorization: refreshJWT,
+        },
+      });
+
+      if (res.data.status === "success") {
+        sessionStorage.setItem("accessJWT", res.data.accessJWT);
+      }
+
+      resolve(true);
+    } catch (error) {
+      if (error.message === "Request failed with status code 403") {
+        localStorage.removeItem("crmSite");
+      }
+
+      reject(false);
+    }
+  });
+};
+
+export const userLogout = async () => {
+  try {
+    await axios.delete(logoutUrl, {
+      headers: {
+        Authorization: sessionStorage.getItem("accessJWT"),
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };

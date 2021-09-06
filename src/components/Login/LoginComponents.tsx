@@ -9,18 +9,18 @@ import { getUser } from "../../pages/Dashboard/userActions";
 import { RootState } from "../../store";
 import { loginPending, loginSuccess, loginFail } from "./loginSlice";
 export const LoginComponents = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("e1@e.com");
+  const [password, setPassword] = useState("Password2");
   const history = useHistory();
   const dispatch = useDispatch();
   const login = useSelector((state: RootState) => state.Login);
   const { isLoading, isAuth, error } = login;
 
   useEffect(() => {
-    if (isAuth === true) {
-      history.push("/dashboard");
-    }
+    sessionStorage.getItem("accessJWT") && history.push("/dashboard");
   }, [history, isAuth]);
+
+  
   const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(loginPending());

@@ -2,9 +2,22 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { userLogout } from "../../api/userApi";
+import { useDispatch } from "react-redux";
+import { loginReset } from "../Login/loginSlice";
 
 export default function Header() {
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+  const logMeOut = () => {
+    userLogout();
+    sessionStorage.removeItem("accessJWT");
+    localStorage.removeItem("crmSite");
+    dispatch(loginReset());
+    history.push("/");
+  };
   return (
     <Popover className="relative bg-white">
       <div className="w-full mx-auto border-b-2 border-gray-100">
@@ -40,18 +53,12 @@ export default function Header() {
             </Link>
           </Popover.Group>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <Link
-              to="/"
+            <button
               className="whitespace-nowrap text-2xl font-medium text-gray-500 hover:text-gray-900"
+              onClick={logMeOut}
             >
-              ورود
-            </Link>
-            <Link
-              to="/register"
-              className="mr-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-2xl font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-            >
-              ثبت نام
-            </Link>
+              خروج
+            </button>
           </div>
         </div>
       </div>
@@ -107,21 +114,12 @@ export default function Header() {
                 </Link>
               </div>
               <div>
-                <Link
-                  to="#"
-                  className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-2xl font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                <button
+                  className="whitespace-nowrap text-2xl font-medium text-gray-500 hover:text-gray-900"
+                  onClick={logMeOut}
                 >
-                  ثبت نام
-                </Link>
-                <p className="mt-6 text-center text-xl font-medium text-gray-500 ">
-                  حساب کابری دارید ؟
-                  <Link
-                    to="#"
-                    className="text-indigo-600 hover:text-indigo-500 mr-4"
-                  >
-                    ورود
-                  </Link>
-                </p>
+                  خروج
+                </button>
               </div>
             </div>
           </div>

@@ -45,6 +45,18 @@ export interface ILoginState {
   error: string;
 }
 
+export interface IAddTicketState {
+  isLoading: boolean;
+  ticket: TAddTicket;
+  error: string;
+}
+
+export type TAddTicket = {
+  subject: string;
+  sender: string;
+  message: string;
+};
+
 export type IIsAuth = {
   accessJWT: string;
   message: string;

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
-import { AddTicketPage } from "./pages/AddTicketPage";
+import { AddTicketPage } from "./pages/AddTicket/AddTicketPage";
 import { DashboardPage } from "./pages/Dashboard/DashboardPage";
 import { Entry } from "./pages/Entry";
 import { TicketListPage } from "./pages/TicketList/TicketListPage";

@@ -4,11 +4,13 @@ import { useDispatch } from "react-redux";
 import TicketReducer from "./pages/TicketList/TicketSlice";
 import LoginReducer from "./components/Login/loginSlice";
 import UserReducer from "./pages/Dashboard/dashboardSlice";
+import AddTicketReducer from "./pages/AddTicket/addTicketSlice"
 export const store = configureStore({
   reducer: {
     Tickets: TicketReducer,
     Login: LoginReducer,
     User: UserReducer,
+    AddTicket: AddTicketReducer,
   },
 });
 
