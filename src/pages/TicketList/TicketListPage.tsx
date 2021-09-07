@@ -5,7 +5,7 @@ import { BreadCrumbComponent } from "../../components/BreadCrumb/BreadCrumbCompo
 import { SearchFormComponent } from "../../components/SearchForm/SearchFormComponent";
 import { TicketTableComponent } from "../../components/TicketTable/TicketTableComponent";
 import { RootState } from "../../store";
-import { fetchAllTickets } from "./ticketsAction";
+import { fetchAllTickets } from "./ticketsActions";
 import { Loading } from "../../components/Loading/Loading";
 
 export const TicketListPage = () => {

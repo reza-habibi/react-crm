@@ -6,7 +6,7 @@ import { AddTicketPage } from "./pages/AddTicket/AddTicketPage";
 import { DashboardPage } from "./pages/Dashboard/DashboardPage";
 import { Entry } from "./pages/Entry";
 import { TicketListPage } from "./pages/TicketList/TicketListPage";
-import { TicketPage } from "./pages/TicketPage";
+import { TicketPage } from "./pages/Ticket/TicketPage";
 
 function App() {
   return (

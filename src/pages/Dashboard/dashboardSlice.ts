@@ -1,8 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IUserState } from "../../types.ds";
 
-const initialState = {
+const initialState: IUserState = {
   isLoading: false,
-  user: {},
+  user: {
+    _id: "",
+    name: "",
+    email: "",
+  },
   error: "",
 };
 

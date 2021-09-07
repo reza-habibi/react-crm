@@ -4,18 +4,14 @@ import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link, useHistory } from "react-router-dom";
 import { userLogout } from "../../api/userApi";
-import { useDispatch } from "react-redux";
-import { loginReset } from "../Login/loginSlice";
 
 export default function Header() {
   const history = useHistory();
 
-  const dispatch = useDispatch();
   const logMeOut = () => {
     userLogout();
     sessionStorage.removeItem("accessJWT");
     localStorage.removeItem("crmSite");
-    dispatch(loginReset());
     history.push("/");
   };
   return (

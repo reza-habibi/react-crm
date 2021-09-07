@@ -1,20 +1,23 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { BreadCrumbComponent } from "../../components/BreadCrumb/BreadCrumbComponent";
 import { Loading } from "../../components/Loading/Loading";
 import { RootState } from "../../store";
 import { ITicketData } from "../../types.ds";
-import { fetchAllTickets } from "../TicketList/ticketsAction";
+import { fetchAllTickets } from "../TicketList/ticketsActions";
 
 export const DashboardPage = () => {
   const dispatch = useDispatch();
   const ticketsReducer = useSelector((state: RootState) => state.Tickets);
   const { isLoading, error, tickets } = ticketsReducer;
+  const history = useHistory();
 
   useEffect(() => {
-    dispatch(fetchAllTickets());
-  }, [dispatch]);
+    if (!tickets.length) {
+      dispatch(fetchAllTickets());
+    }
+  }, [tickets, dispatch]);
 
   if (isLoading) return <Loading />;
 
@@ -96,7 +99,11 @@ export const DashboardPage = () => {
             ) : (
               <tbody className="bg-white divide-y divide-gray-200">
                 {tickets.map((ticket: ITicketData) => (
-                  <tr key={ticket._id} className="hover:bg-gray-300">
+                  <tr
+                    key={ticket._id}
+                    className="hover:bg-gray-300"
+                    onClick={() => history.push(`/ticket/${ticket._id}`)}
+                  >
                     <td className="px-6 py-4 text-xl whitespace-nowrap">
                       {ticket._id}
                     </td>

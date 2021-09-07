@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { userLogin } from "../../api/userApi";
-import { getUser } from "../../pages/Dashboard/userActions";
 import { RootState } from "../../store";
 import { loginPending, loginSuccess, loginFail } from "./loginSlice";
 export const LoginComponents = () => {
@@ -23,19 +22,20 @@ export const LoginComponents = () => {
   
   const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(loginPending());
-    try {
-      const isAuth = await userLogin({ email, password });
+		dispatch(loginPending());
 
-      if (isAuth.data.status === "error") {
-        dispatch(loginFail(isAuth.data.message));
-      } else {
-        dispatch(loginSuccess());
-        dispatch(getUser());
-      }
-    } catch (error) {
-      dispatch(loginFail(error.message));
-    }
+		try {
+			const isAuth = await userLogin({ email, password });
+
+			if (isAuth.status === "error") {
+				return dispatch(loginFail(isAuth.message));
+			}
+
+			dispatch(loginSuccess());
+			history.push("/dashboard");
+		} catch (error) {
+			dispatch(loginFail(error.message));
+		}
   };
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {

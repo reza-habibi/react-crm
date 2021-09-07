@@ -7,20 +7,22 @@ const userProfileUrl = rootUrl + "user";
 const logoutUrl = rootUrl + "user/logout";
 const newAccessJWT = rootUrl + "tokens";
 export const userLogin = (formData: { email: string; password: string }) => {
-  return new Promise<{ data: IIsAuth }>(async (resolve, reject) => {
-    try {
-      const res = await axios.post(loginUrl, formData);
+  return new Promise<{ status: string; data: IIsAuth; message: string }>(
+    async (resolve, reject) => {
+      try {
+        const res = await axios.post(loginUrl, formData);
 
-      sessionStorage.setItem("accessJWT", res.data.accessJWT);
-      localStorage.setItem(
-        "crmSite",
-        JSON.stringify({ refreshJWT: res.data.refreshJWT })
-      );
-      resolve(res);
-    } catch (error) {
-      reject(error);
+        sessionStorage.setItem("accessJWT", res.data.accessJWT);
+        localStorage.setItem(
+          "crmSite",
+          JSON.stringify({ refreshJWT: res.data.refreshJWT })
+        );
+        resolve(res.data);
+      } catch (error) {
+        reject(error);
+      }
     }
-  });
+  );
 };
 
 export const fetchUser = () => {

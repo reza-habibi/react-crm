@@ -6,6 +6,13 @@ const initialState: ITicketState = {
   isLoading: false,
   error: "",
   searchTicketList: [],
+  selectedTicket: {
+    _id: "",
+    subject: "",
+    status: "",
+    openAt: "",
+    conversations: [],
+  },
 };
 
 const ticketListSlice = createSlice({
@@ -31,6 +38,18 @@ const ticketListSlice = createSlice({
         return ticket.subject.includes(payload);
       });
     },
+
+    fetchSingleTicketLoading: (state) => {
+      state.isLoading = true;
+    },
+    fetchSingleTicketSuccess: (state, { payload }) => {
+      state.isLoading = false;
+      state.selectedTicket = payload;
+    },
+    fetchSingleTicketFail: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
   },
 });
 
@@ -41,6 +60,9 @@ export const {
   fetchTicketSuccess,
   fetchTicketFail,
   searchTicket,
+  fetchSingleTicketLoading,
+  fetchSingleTicketSuccess,
+  fetchSingleTicketFail,
 } = actions;
 
 export default reducer;

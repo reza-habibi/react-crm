@@ -13,13 +13,13 @@ export type ITicketData = {
   subject: string;
   status: string;
   openAt: string;
-  history?: ITicketHistory[];
+  conversations: ITicketHistory[];
 };
 
 export type ITicketHistory = {
-  date: string;
+  msgAt: string;
   message: string;
-  messageBy: string;
+  sender: string;
 };
 
 export interface ISearchFormProps {
@@ -32,6 +32,7 @@ export interface ITicketState {
   isLoading: boolean;
   error: string;
   searchTicketList: any;
+  selectedTicket:ITicketData
 }
 
 export type IResultData = {
@@ -63,3 +64,13 @@ export type IIsAuth = {
   refreshJWT: string;
   status: string;
 };
+
+export interface IUserState {
+  isLoading: boolean;
+  user: {
+    _id: string;
+    name: string;
+    email: string;
+  };
+  error:string
+}

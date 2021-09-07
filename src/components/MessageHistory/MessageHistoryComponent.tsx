@@ -10,12 +10,12 @@ export const MessageHistoryComponent: React.FC<{
         <div
           key={index}
           className={`w-full flex flex-col lg:grid grid-cols-4 grid-flow-row p-10  border rounded-lg  ${
-            item.messageBy === "اپراتور" ? "border-pelorous" : "border-blue-500"
+            item.sender === "اپراتور" ? "border-pelorous" : "border-blue-500"
           }`}
         >
           <div
             className={`col-span-1 flex lg:flex-col mb-5 lg:mb-0 ${
-              item.messageBy === "اپراتور"
+              item.sender === "اپراتور"
                 ? "items-start lg:items-end"
                 : "items-start"
             }`}
@@ -23,7 +23,7 @@ export const MessageHistoryComponent: React.FC<{
             <figure className="w-1/3">
               <img
                 className={`border-2 rounded-full h-auto w-36   ${
-                  item.messageBy === "اپراتور"
+                  item.sender === "اپراتور"
                     ? "border-pelorous "
                     : "border-blue-500"
                 }`}
@@ -33,7 +33,7 @@ export const MessageHistoryComponent: React.FC<{
             </figure>
             <div
               className={`flex flex-col space-y-3 w-2/3 h-full my-auto mr-2 ${
-                item.messageBy === "اپراتور"
+                item.sender === "اپراتور"
                   ? "items-start lg:items-end"
                   : "items-start"
               }`}
@@ -42,23 +42,23 @@ export const MessageHistoryComponent: React.FC<{
                 فرستنده :{" "}
                 <span
                   className={`text-2xl  ${
-                    item.messageBy === "اپراتور"
+                    item.sender === "اپراتور"
                       ? "text-pelorous"
                       : "text-blue-500"
                   }`}
                 >
-                  {item.messageBy}
+                  {item.sender}
                 </span>
               </span>
               <span className="text-gray-900 text-2xl ">
                 تاریخ :{" "}
-                <span className="text-gray-600 text-xl">{item.date}</span>
+                <span className="text-gray-600 text-xl">{item.msgAt}</span>
               </span>
             </div>
           </div>
           <div
             className={`col-span-3 border border-gray-500-bg-white p-5 rounded-xl shadow-xl bg-gray-100 lg:${
-              item.messageBy === "اپراتور" && "order-first "
+              item.sender === "اپراتور" && "order-first "
             }
 `}
           >

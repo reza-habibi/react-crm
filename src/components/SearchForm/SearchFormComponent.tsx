@@ -1,7 +1,7 @@
 import { SearchIcon } from "@heroicons/react/outline";
 import React, { ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
-import { filterSearchTicket } from "../../pages/TicketList/ticketsAction";
+import { filterSearchTicket } from "../../pages/TicketList/ticketsActions";
 
 export const SearchFormComponent = () => {
   const dispatch = useDispatch();
