@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { BreadCrumbComponent } from "../../components/BreadCrumb/BreadCrumbComponent";
 import { SearchFormComponent } from "../../components/SearchForm/SearchFormComponent";
-import { TicketTableComponent } from "../../components/TicketTable/TicketTableComponent";
+import { TicketTableComponent } from "../../components/TicketTable/TicketTableComponent";  
 import { RootState } from "../../store";
 import { fetchAllTickets } from "./ticketsActions";
 import { Loading } from "../../components/Loading/Loading";

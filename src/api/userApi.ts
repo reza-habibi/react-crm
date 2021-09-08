@@ -54,6 +54,7 @@ export const fetchNewAccessJWT = () => {
         crmSite = JSON.parse(storedData);
       }
       const { refreshJWT } = crmSite;
+      console.log(refreshJWT);
       if (!refreshJWT) {
         reject("user not found!");
       }
@@ -67,7 +68,7 @@ export const fetchNewAccessJWT = () => {
           Authorization: refreshJWT,
         },
       });
-
+      console.log(refreshJWT);
       if (res.data.status === "success") {
         sessionStorage.setItem("accessJWT", res.data.accessJWT);
       }

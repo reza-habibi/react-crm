@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { userLogin } from "../../api/userApi";
+import { getUserProfile } from "../../pages/Dashboard/userActions";
 import { RootState } from "../../store";
 import { loginPending, loginSuccess, loginFail } from "./loginSlice";
 export const LoginComponents = () => {
@@ -19,23 +20,23 @@ export const LoginComponents = () => {
     sessionStorage.getItem("accessJWT") && history.push("/dashboard");
   }, [history, isAuth]);
 
-  
   const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-		dispatch(loginPending());
+    dispatch(loginPending());
 
-		try {
-			const isAuth = await userLogin({ email, password });
+    try {
+      const isAuth = await userLogin({ email, password });
 
-			if (isAuth.status === "error") {
-				return dispatch(loginFail(isAuth.message));
-			}
+      if (isAuth.status === "error") {
+        return dispatch(loginFail(isAuth.message));
+      }
 
-			dispatch(loginSuccess());
-			history.push("/dashboard");
-		} catch (error) {
-			dispatch(loginFail(error.message));
-		}
+      dispatch(loginSuccess());
+      dispatch(getUserProfile());
+      history.push("/dashboard");
+    } catch (error) {
+      dispatch(loginFail(error.message));
+    }
   };
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {

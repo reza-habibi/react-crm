@@ -52,7 +52,9 @@ export const MessageHistoryComponent: React.FC<{
               </span>
               <span className="text-gray-900 text-2xl ">
                 تاریخ :{" "}
-                <span className="text-gray-600 text-xl">{item.msgAt}</span>
+                <span className="text-gray-600 text-xl">
+                  {item.msgAt && new Date(item.msgAt).toLocaleString("fa-IR")}
+                </span>
               </span>
             </div>
           </div>

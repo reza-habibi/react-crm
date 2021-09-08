@@ -5,6 +5,7 @@ const initialState: ITicketState = {
   tickets: [],
   isLoading: false,
   error: "",
+  replyTicketError: "",
   searchTicketList: [],
   selectedTicket: {
     _id: "",
@@ -13,6 +14,7 @@ const initialState: ITicketState = {
     openAt: "",
     conversations: [],
   },
+  replyMsg: "",
 };
 
 const ticketListSlice = createSlice({
@@ -50,6 +52,34 @@ const ticketListSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    replyTicketLoading: (state) => {
+      state.isLoading = true;
+    },
+    replyTicketSuccess: (state) => {
+      state.isLoading = false;
+      state.replyTicketError = "";
+    },
+    replyTicketFail: (state, { payload }) => {
+      state.isLoading = false;
+      state.replyTicketError = payload;
+    },
+    closeTicketLoading: (state) => {
+      state.isLoading = true;
+    },
+    closeTicketSuccess: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = "";
+      state.replyMsg = payload;
+    },
+    closeTicketFail: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    resetResponseMsg: (state) => {
+      state.isLoading = false;
+      state.replyMsg = "";
+      state.replyTicketError = "";
+    },
   },
 });
 
@@ -63,6 +93,13 @@ export const {
   fetchSingleTicketLoading,
   fetchSingleTicketSuccess,
   fetchSingleTicketFail,
+  replyTicketLoading,
+  replyTicketSuccess,
+  replyTicketFail,
+  closeTicketLoading,
+  closeTicketSuccess,
+  closeTicketFail,
+  resetResponseMsg,
 } = actions;
 
 export default reducer;

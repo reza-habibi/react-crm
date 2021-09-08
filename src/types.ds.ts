@@ -31,8 +31,10 @@ export interface ITicketState {
   tickets: ITicketData[];
   isLoading: boolean;
   error: string;
+  replyTicketError: string;
   searchTicketList: any;
-  selectedTicket:ITicketData
+  selectedTicket: ITicketData;
+  replyMsg: "";
 }
 
 export type IResultData = {
@@ -72,5 +74,5 @@ export interface IUserState {
     name: string;
     email: string;
   };
-  error:string
+  error: string;
 }

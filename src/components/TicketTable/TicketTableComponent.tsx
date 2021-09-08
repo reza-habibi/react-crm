@@ -62,13 +62,24 @@ export const TicketTableComponent = ({ tickets }: any) => {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="px-6 py-2 inline-flex text-xl leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-700">
-                      {ticket.status}
-                    </span>
+                    {ticket.status === "بسته شده" ? (
+                      <span className="px-6 py-2 inline-flex text-xl leading-5 font-semibold rounded-full bg-red-100 text-red-700">
+                        {ticket.status}
+                      </span>
+                    ) : ticket.status === "پاسخ داده شد" ? (
+                      <span className="px-6 py-2 inline-flex text-xl leading-5 font-semibold rounded-full bg-green-100 text-green-700">
+                        {ticket.status}
+                      </span>
+                    ) : (
+                      <span className="px-6 py-2 inline-flex text-xl leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-700">
+                        {ticket.status}
+                      </span>
+                    )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className="text-xl text-gray-500">
-                      {ticket.openAt}
+                      {ticket.openAt &&
+                        new Date(ticket.openAt).toLocaleString("fa-IR")}
                     </span>
                   </td>
                 </tr>

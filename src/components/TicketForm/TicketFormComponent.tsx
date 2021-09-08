@@ -1,20 +1,49 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
-// import DatePicker, { DateObject } from "react-multi-date-picker";
-// import type { Value } from "react-multi-date-picker";
-// import persian from "react-date-object/calendars/persian";
-// import persian_fa from "react-date-object/locales/persian_fa";
-// import InputIcon from "react-multi-date-picker/components/input_icon";
-import { toast } from "react-toastify";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import DatePicker, { DateObject } from "react-multi-date-picker";
+import type { Value } from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import InputIcon from "react-multi-date-picker/components/input_icon";
+import { RootState } from "../../store";
 import { ShortText } from "../../utils/Validation";
+import { restSuccessMSg } from "./addNewTicketSlicer";
+import { openNewTicket } from "./newTicketAction";
+
+const initialFrmDt = {
+  subject: "",
+  message: "",
+};
+const initialFrmError = {
+  subject: false,
+  issueDate: false,
+  message: false,
+};
 
 export const TicketFormComponent = () => {
-  // const [dateValue, setDateValue] = useState<Value>(
-  //   new DateObject({ calendar: persian })
-  // );
-  const [formData, setFormData] = useState({
-    subject: "",
-    message: "",
-  });
+  const [dateValue, setDateValue] = useState<Value>(
+    new DateObject({ calendar: persian })
+  );
+
+  const dispatch = useDispatch();
+
+  const {
+    user: { name },
+  } = useSelector((state: RootState) => state.User);
+
+  const { isLoading, error, successMsg } = useSelector(
+    (state: RootState) => state.NewTicket
+  );
+
+  const [frmDataError, setFrmDataError] = useState(initialFrmError);
+  const [formData, setFormData] = useState(initialFrmDt);
+
+  useEffect(() => {
+    return () => {
+      successMsg && dispatch(restSuccessMSg());
+    };
+  }, [dispatch, formData, frmDataError, successMsg]);
+
   const handleOnChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -25,58 +54,26 @@ export const TicketFormComponent = () => {
   const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isValid = await ShortText(formData.subject);
-    !formData.subject
-      ? toast.error("لطفاً فیلد موضوع را تکمیل نمایید!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          style: {
-            fontFamily: "iranyekan",
-            direction: "rtl",
-            fontSize: "1.5rem",
-          },
-        })
-      : !formData.message
-      ? toast.error("لطفاً فیلد  جزئیات را تکمیل نمایید!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          style: {
-            fontFamily: "iranyekan",
-            direction: "rtl",
-            fontSize: "1.5rem",
-          },
-        })
-      : !isValid
-      ? toast.error("موضوع ورودی شما بایستی بین 3 تا 100 کاراکتر باشد!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          style: {
-            fontFamily: "iranyekan",
-            direction: "rtl",
-            fontSize: "1.5rem",
-          },
-        })
-      : console.log(formData);
+
+    setFrmDataError({
+      ...initialFrmError,
+      subject: !isValid,
+    });
+
+    dispatch(
+      openNewTicket({ ...formData, sender: name, issueDate: dateValue })
+    );
   };
   return (
     <form
       className="form w-full lg:w-2/3 mx-auto bg-white rounded-lg py-10 space-y-10 px-5 shadow-lg"
       onSubmit={handleOnSubmit}
     >
+      {error && (
+        <span className="bg-red-200 text-red-700 lg:w-2/3 lg:mx-auto text-2xl p-4 rounded-lg">
+          {error}
+        </span>
+      )}
       <h3 className="text-3xl text-gray-900  lg:w-2/3 lg:mx-auto">
         ثبت تیکت جدید :
       </h3>
@@ -97,7 +94,7 @@ export const TicketFormComponent = () => {
           موضوع تیکت
         </label>
       </div>
-      {/* <div className="floating-input relative lg:w-2/3 lg:mx-auto ">
+      <div className="floating-input relative lg:w-2/3 lg:mx-auto ">
         <label htmlFor="date" className="ml-5 text-xl text-gray-900">
           تاریخ روی دادن خطا :
         </label>
@@ -114,7 +111,7 @@ export const TicketFormComponent = () => {
           value={dateValue}
           onChange={setDateValue}
         />
-      </div> */}
+      </div>
       <div className="floating-input relative lg:w-2/3 lg:mx-auto ">
         <textarea
           name="message"
@@ -132,6 +129,13 @@ export const TicketFormComponent = () => {
         >
           ثبت تیکت
         </button>
+        {isLoading && (
+          <>
+            <div className="bg-red-600 p-2 w-4 h-4 rounded-full animate-bounce400 green-circle mr-1"></div>
+            <div className="bg-green-600 p-2 w-4 h-4 rounded-full animate-bounce200 red-circle mr-1"></div>
+            <div className="bg-blue-600 p-2 w-4 h-4 rounded-full animate-bounce blue-circle mr-1"></div>{" "}
+          </>
+        )}
       </div>
     </form>
   );

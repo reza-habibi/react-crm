@@ -10,7 +10,7 @@ export const BreadCrumbComponent = ({ page }: any) => {
         <ChevronLeftIcon className="block w-6 h-6" aria-hidden="true" />
       </li>
       <li className="inline-flex items-center">
-        <Link to="/components">{page}</Link>
+        <span>{page}</span>
       </li>
     </ul>
   );
