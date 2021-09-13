@@ -9,6 +9,7 @@ import { RootState } from "../../store";
 import { ShortText } from "../../utils/Validation";
 import { restSuccessMSg } from "./addNewTicketSlicer";
 import { openNewTicket } from "./newTicketAction";
+import { useHistory } from "react-router";
 
 const initialFrmDt = {
   subject: "",
@@ -21,6 +22,7 @@ const initialFrmError = {
 };
 
 export const TicketFormComponent = () => {
+  const history = useHistory();
   const [dateValue, setDateValue] = useState<Value>(
     new DateObject({ calendar: persian })
   );
@@ -61,9 +63,17 @@ export const TicketFormComponent = () => {
     });
 
     dispatch(
-      openNewTicket({ ...formData, sender: name, issueDate: dateValue })
+      openNewTicket({
+        ...formData,
+        sender: name,
+        issueDate: dateValue ? dateValue.toLocaleString("fa-IR") : null,
+      })
     );
+
+    history.push("/dashboard");
   };
+
+  console.log(dateValue?.toLocaleString("fa-IR"));
   return (
     <form
       className="form w-full lg:w-2/3 mx-auto bg-white rounded-lg py-10 space-y-10 px-5 shadow-lg"

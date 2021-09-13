@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ILoginComp } from "../../types.ds";
+import { ILoginComp } from "../../types";
 
 export const PasswordReset: React.FC<ILoginComp> = ({
   handleOnSubmit,

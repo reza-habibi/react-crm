@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ILoginState } from "../../types.ds";
+import { ILoginState } from "../../types";
 
 const initialState: ILoginState = {
   isLoading: false,

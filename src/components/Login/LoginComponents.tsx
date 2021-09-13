@@ -35,7 +35,7 @@ export const LoginComponents = () => {
       dispatch(getUserProfile());
       history.push("/dashboard");
     } catch (error) {
-      dispatch(loginFail(error.message));
+      dispatch(loginFail(error));
     }
   };
 

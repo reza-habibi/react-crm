@@ -76,3 +76,29 @@ export interface IUserState {
   };
   error: string;
 }
+
+export interface IAddTicketData {
+  subject: string;
+  sender: string;
+  message: string;
+  issueDate: string | null;
+}
+
+export interface INewUser {
+  name: string;
+  phone: string;
+  email: string;
+  company: string;
+  address: string;
+  password: string;
+  confirmPass: string;
+}
+
+export interface IPassError {
+  isLengthy: boolean;
+  isUpper: boolean;
+  isLower: boolean;
+  hasNumber: boolean;
+  hasSpclChr: boolean;
+  confirmPass: boolean;
+}

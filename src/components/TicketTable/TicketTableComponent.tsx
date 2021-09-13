@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { ITicketData } from "../../types.ds";
+import { ITicketData } from "../../types";
 
 export const TicketTableComponent = ({ tickets }: any) => {
   const history = useHistory();

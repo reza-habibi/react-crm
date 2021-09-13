@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { BreadCrumbComponent } from "../../components/BreadCrumb/BreadCrumbComponent";
 import { Loading } from "../../components/Loading/Loading";
 import { RootState } from "../../store";
-import { ITicketData } from "../../types.ds";
+import { ITicketData } from "../../types";
 import { fetchAllTickets } from "../TicketList/ticketsActions";
 
 export const DashboardPage = () => {
@@ -16,6 +16,10 @@ export const DashboardPage = () => {
   useEffect(() => {
     dispatch(fetchAllTickets());
   }, [dispatch]);
+
+  const pendingTickets = tickets.filter(
+    (ticket: ITicketData) => ticket.status === "در انتظار پاسخ اپراتور"
+  );
 
   if (isLoading) return <Loading />;
 
@@ -46,10 +50,10 @@ export const DashboardPage = () => {
         ایجاد تیکت جدید
       </Link>
       <span className="text-white font-bold text-2xl">
-        تعداد کل تیکت ها : 256
+        تعداد کل تیکت ها : {tickets.length}
       </span>
       <span className="text-white font-bold text-2xl">
-        تیکت های در انتظار پاسخ : 15
+        تیکت های در انتظار پاسخ : {pendingTickets.length}
       </span>
 
       <div className="w-full lg:w-10/12 mx-auto py-10 space-y-10">

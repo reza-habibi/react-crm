@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IResultData } from "../types.ds";
+import { IResultData } from "../types";
 
 const rootUrl = "http://localhost:4030/v1/";
 const ticketUrl = rootUrl + "ticket";

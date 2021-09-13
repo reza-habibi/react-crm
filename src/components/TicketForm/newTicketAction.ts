@@ -5,9 +5,10 @@ import {
 } from "./addNewTicketSlicer";
 
 import { createNewTicket } from "../../api/ticketApi";
+import { IAddTicketData } from "../../types";
 
 export const openNewTicket =
-  (frmData: any) =>
+  (frmData: IAddTicketData) =>
   async (dispatch: (arg0: { payload: any; type: string }) => void) => {
     try {
       dispatch(openNewTicketPending());
@@ -21,6 +22,6 @@ export const openNewTicket =
       dispatch(openNewTicketSuccess(result.message));
     } catch (error) {
       console.log(error);
-      dispatch(openNewTicketFail(error.message));
+      dispatch(openNewTicketFail(error));
     }
   };

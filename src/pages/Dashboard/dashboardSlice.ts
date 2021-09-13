@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IUserState } from "../../types.ds";
+import { IUserState } from "../../types";
 
 const initialState: IUserState = {
   isLoading: false,

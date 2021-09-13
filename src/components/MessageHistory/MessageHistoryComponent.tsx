@@ -1,5 +1,5 @@
 import React from "react";
-import { ITicketHistory } from "../../types.ds";
+import { ITicketHistory } from "../../types";
 
 export const MessageHistoryComponent: React.FC<{
   msgHistory: ITicketHistory[] | undefined;
@@ -9,7 +9,7 @@ export const MessageHistoryComponent: React.FC<{
       {msgHistory?.map((item: ITicketHistory, index: number) => (
         <div
           key={index}
-          className={`w-full flex flex-col lg:grid grid-cols-4 grid-flow-row p-10  border rounded-lg  ${
+          className={`w-full flex flex-col-reverse lg:grid grid-cols-4 grid-flow-row p-10  border rounded-lg  ${
             item.sender === "اپراتور" ? "border-pelorous" : "border-blue-500"
           }`}
         >

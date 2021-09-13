@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ITicketState } from "../../types.ds";
+import { ITicketState } from "../../types";
 
 const initialState: ITicketState = {
   tickets: [],

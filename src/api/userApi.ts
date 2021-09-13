@@ -1,11 +1,23 @@
 import axios from "axios";
-import { IIsAuth } from "../types.ds";
+import { IIsAuth, INewUser } from "../types";
 
 const rootUrl = "http://localhost:4030/v1/";
 const loginUrl = rootUrl + "user/login";
 const userProfileUrl = rootUrl + "user";
 const logoutUrl = rootUrl + "user/logout";
 const newAccessJWT = rootUrl + "tokens";
+
+export const userRegister = (formData: INewUser) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const result = await axios.post(loginUrl, formData);
+      resolve(result);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 export const userLogin = (formData: { email: string; password: string }) => {
   return new Promise<{ status: string; data: IIsAuth; message: string }>(
     async (resolve, reject) => {
@@ -75,7 +87,7 @@ export const fetchNewAccessJWT = () => {
 
       resolve(true);
     } catch (error) {
-      if (error.message === "Request failed with status code 403") {
+      if (error === "Request failed with status code 403") {
         localStorage.removeItem("crmSite");
       }
 
