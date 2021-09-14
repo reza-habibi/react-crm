@@ -27,7 +27,7 @@ export const fetchAllTickets = () => async (dispatch: any) => {
     const result = await getAllTickets();
     dispatch(fetchTicketSuccess(result.data.result));
   } catch (error) {
-    dispatch(fetchTicketFail(error.message));
+    dispatch(fetchTicketFail(error));
   }
 };
 
@@ -42,7 +42,7 @@ export const fetchSingleTicket = (_id: string) => async (dispatch: any) => {
     const result = await getSingleTicket(_id);
     dispatch(fetchSingleTicketSuccess(result.data.result[0]));
   } catch (error) {
-    dispatch(fetchSingleTicketFail(error.message));
+    dispatch(fetchSingleTicketFail(error));
   }
 };
 
@@ -63,7 +63,7 @@ export const replyOnTicket =
         dispatch(fetchSingleTicket(_id));
       }
     } catch (error) {
-      dispatch(replyTicketFail(error.message));
+      dispatch(replyTicketFail(error));
     }
   };
 
@@ -79,7 +79,7 @@ export const closeTicket = (_id: string) => async (dispatch: any) => {
 
     dispatch(closeTicketSuccess("وضعیت تیکت با موفقیت به روزرسانی شد"));
   } catch (error) {
-    console.log(error.message);
-    dispatch(closeTicketFail(error.message));
+    console.log(error);
+    dispatch(closeTicketFail(error));
   }
 };

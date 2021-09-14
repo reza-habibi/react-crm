@@ -8,14 +8,16 @@ const logoutUrl = rootUrl + "user/logout";
 const newAccessJWT = rootUrl + "tokens";
 
 export const userRegister = (formData: INewUser) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const result = await axios.post(loginUrl, formData);
-      resolve(result);
-    } catch (error) {
-      reject(error);
+  return new Promise<{ message: string; result: INewUser; status: string }>(
+    async (resolve, reject) => {
+      try {
+        const result = await axios.post(userProfileUrl, formData);
+        resolve(result.data);
+      } catch (error) {
+        reject(error);
+      }
     }
-  });
+  );
 };
 
 export const userLogin = (formData: { email: string; password: string }) => {

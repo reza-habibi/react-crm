@@ -14,8 +14,10 @@ export const DashboardPage = () => {
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(fetchAllTickets());
-  }, [dispatch]);
+    if (tickets.length > 0) {
+      dispatch(fetchAllTickets());
+    }
+  }, [dispatch, tickets.length]);
 
   const pendingTickets = tickets.filter(
     (ticket: ITicketData) => ticket.status === "در انتظار پاسخ اپراتور"

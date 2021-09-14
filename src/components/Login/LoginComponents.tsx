@@ -115,12 +115,16 @@ export const LoginComponents = () => {
             <div className="bg-blue-600 p-2 w-4 h-4 rounded-full animate-bounce blue-circle mr-1"></div>
           </div>
         )}
-        <Link
-          to="/reset-password"
-          className="text-blue-500 text-xl lg:w-2/3 lg:mx-auto py-5 border-t border-gray-300"
-        >
-          رمز عبور خود را فراموش کرده اید ؟
-        </Link>
+
+        <div className="flex justify-between items-enter lg:w-2/3 lg:mx-auto border-t border-gray-300">
+          <Link to="/reset-password" className="text-blue-500 text-xl py-5 ">
+            رمز عبور خود را فراموش کرده اید ؟
+          </Link>
+
+          <Link to="/register" className="text-blue-500 text-xl py-5 ">
+            عضو نیستید؟ ثبت نام کنید
+          </Link>
+        </div>
       </form>
     </div>
   );

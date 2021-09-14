@@ -86,7 +86,7 @@ export interface IAddTicketData {
 
 export interface INewUser {
   name: string;
-  phone: string;
+  phone: number;
   email: string;
   company: string;
   address: string;
@@ -96,8 +96,8 @@ export interface INewUser {
 
 export interface IPassError {
   isLengthy: boolean;
-  isUpper: boolean;
-  isLower: boolean;
+  hasUpper: boolean;
+  hasLower: boolean;
   hasNumber: boolean;
   hasSpclChr: boolean;
   confirmPass: boolean;
