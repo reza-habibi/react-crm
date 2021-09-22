@@ -91,7 +91,7 @@ export interface INewUser {
   company: string;
   address: string;
   password: string;
-  confirmPass: string;
+  confirmPass?: string;
 }
 
 export interface IPassError {

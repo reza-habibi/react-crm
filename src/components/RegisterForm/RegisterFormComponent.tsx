@@ -70,7 +70,10 @@ export const RegisterFormComponent = () => {
 
   const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(userRegistration(newUser));
+    const { name, phone, email, company, address, password } = newUser;
+    dispatch(
+      userRegistration({ name, phone, email, company, address, password })
+    );
   };
 
   return (

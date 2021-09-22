@@ -7,7 +7,12 @@ import { Link, useHistory } from "react-router-dom";
 import { userLogin } from "../../api/userApi";
 import { getUserProfile } from "../../pages/Dashboard/userActions";
 import { RootState } from "../../store";
-import { loginPending, loginSuccess, loginFail } from "./loginSlice";
+import {
+  loginPending,
+  loginSuccess,
+  loginFail,
+  loginReset,
+} from "./loginSlice";
 export const LoginComponents = () => {
   const [email, setEmail] = useState("e1@e.com");
   const [password, setPassword] = useState("Password2");
@@ -16,9 +21,13 @@ export const LoginComponents = () => {
   const login = useSelector((state: RootState) => state.Login);
   const { isLoading, isAuth, error } = login;
 
+  // useEffect(() => {
+  //   sessionStorage.getItem("accessJWT") && history.push("/dashboard");
+  // }, [history, isAuth]);
+
   useEffect(() => {
-    sessionStorage.getItem("accessJWT") && history.push("/dashboard");
-  }, [history, isAuth]);
+    dispatch(loginReset());
+  }, [dispatch]);
 
   const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,14 +35,15 @@ export const LoginComponents = () => {
 
     try {
       const isAuth = await userLogin({ email, password });
+      console.log(isAuth);
 
       if (isAuth.status === "error") {
         return dispatch(loginFail(isAuth.message));
+      } else {
+        dispatch(loginSuccess());
+        dispatch(getUserProfile());
+        history.push("/dashboard");
       }
-
-      dispatch(loginSuccess());
-      dispatch(getUserProfile());
-      history.push("/dashboard");
     } catch (error) {
       dispatch(loginFail(error));
     }
